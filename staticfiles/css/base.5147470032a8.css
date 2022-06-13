@@ -1,0 +1,16 @@
+
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+    background-color: #f2eeefd8;
+}
+
+h1 {
+    color: #745648;
+
+}
+
+img.bookcover {
+    height: 300px;
+    width: auto;
+}
