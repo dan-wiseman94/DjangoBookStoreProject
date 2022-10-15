@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from environs import Env #new
 
@@ -20,7 +21,7 @@ SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
 
 
 DEBUG = env.bool("DJANGO_DEBUG", default=False) # new
-ALLOWED_HOSTS = ["safe-wildwood-94979.herokuapp.com", "localhost", "127.0.0.1"] # new
+ALLOWED_HOSTS = ["django-bookstore-project.herokuapp.com", "localhost", "127.0.0.1"] # new
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,21 +47,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
      #Third Party
+     "firebse_authentication",
      "allauth",
      "allauth.account",
      "crispy_forms",
      "crispy_bootstrap5",
-     "debug_toolbar", 
+     "debug_toolbar",
     # Local
     "accounts.apps.AccountsConfig",
     "pages.apps.PagesConfig",
-    "books.apps.BooksConfig", 
+    "books.apps.BooksConfig",
     "whitenoise.runserver_nostatic",
 
 ]
 
 MIDDLEWARE = [
-    "django.middleware.cache.UpdateCacheMiddleware", 
+    "django.middleware.cache.UpdateCacheMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -165,7 +167,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" # new
 CRISPY_TEMPLATE_PACK = "bootstrap5" # new
 
 # django allauth config
-SITE_ID = 1 
+SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
 "django.contrib.auth.backends.ModelBackend",
 "allauth.account.auth_backends.AuthenticationBackend", # new
@@ -193,4 +195,6 @@ default=True)
 SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=True)
 CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+FIREBASE_PATH = os.path.join(BASE_DIR, 'keyfile.json')
